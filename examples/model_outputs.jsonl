@@ -1,0 +1,2 @@
+{"case":"helpful_summary","source_ids":["doc:readme","doc:policy"],"model_output":"{\"answer\":\"The project uses synthetic data and validates model output before acting.\",\"action\":\"summarize\",\"confidence\":0.86,\"citations\":[\"doc:readme\",\"doc:policy\"],\"writes\":[]}"}
+{"case":"ask_for_source","source_ids":["doc:readme"],"model_output":"{\"answer\":\"I need a source that describes deployment before I can answer that.\",\"action\":\"ask_clarifying_question\",\"confidence\":0.63,\"citations\":[\"doc:readme\"],\"writes\":[]}"}
