@@ -18,6 +18,7 @@ permissions before doing anything with it.
 
 ```sh
 python3 reliability_demo.py examples/model_outputs.jsonl
+python3 structured_output_canary.py examples/canary_outputs.jsonl
 python3 reliability_demo.py --self-test
 ```
 
@@ -26,6 +27,15 @@ Expected result:
 ```text
 PASS helpful_summary
 PASS ask_for_source
+```
+
+Canary output:
+
+```text
+PASS valid_summary_with_citation
+PASS invalid_unknown_citation
+PASS invalid_write_request
+PASS invalid_non_json
 ```
 
 ## Contract
@@ -38,6 +48,15 @@ Each model output must contain:
 - `citations`: source IDs from the current case.
 - `writes`: an empty list.
 
+## Structured Output Canary
+
+`structured_output_canary.py` checks expected pass/fail cases against the same
+contract used by the demo. It is useful when prompt or model changes might
+silently drift away from the JSON shape the application expects.
+
+The fixture in `examples/canary_outputs.jsonl` includes one valid output and
+three expected failures: unknown citation, write request, and non-JSON text.
+
 ## Public Data Notice
 
 All examples are synthetic. Do not add private prompts, real assistant logs,
@@ -48,5 +67,8 @@ connector exports, credentials, or personal data.
 ```sh
 python3 reliability_demo.py --self-test
 python3 reliability_demo.py examples/model_outputs.jsonl
+python3 structured_output_canary.py --self-test
+python3 structured_output_canary.py examples/canary_outputs.jsonl
 python3 -m py_compile reliability_demo.py
+python3 -m py_compile structured_output_canary.py
 ```

@@ -1,0 +1,4 @@
+{"case":"valid_summary_with_citation","expected_valid":true,"source_ids":["doc:readme","doc:policy"],"model_output":"{\"answer\":\"The project validates model JSON before trusting it.\",\"action\":\"summarize\",\"confidence\":0.88,\"citations\":[\"doc:readme\"],\"writes\":[]}"}
+{"case":"invalid_unknown_citation","expected_valid":false,"source_ids":["doc:readme"],"model_output":"{\"answer\":\"The project is production ready.\",\"action\":\"summarize\",\"confidence\":0.72,\"citations\":[\"doc:missing\"],\"writes\":[]}"}
+{"case":"invalid_write_request","expected_valid":false,"source_ids":["doc:readme"],"model_output":"{\"answer\":\"I updated the README.\",\"action\":\"summarize\",\"confidence\":0.8,\"citations\":[\"doc:readme\"],\"writes\":[\"README.md\"]}"}
+{"case":"invalid_non_json","expected_valid":false,"source_ids":["doc:readme"],"model_output":"The project validates JSON."}
