@@ -57,6 +57,19 @@ silently drift away from the JSON shape the application expects.
 The fixture in `examples/canary_outputs.jsonl` includes one valid output and
 three expected failures: unknown citation, write request, and non-JSON text.
 
+## How These Fit Together
+
+Local Model Reliability Example is one piece of a small public toolkit:
+
+- [Public Repo Safety Kit](https://github.com/TheDarkniteFalls/public-repo-safety-kit)
+  checks a public-candidate repo before publishing.
+- [EvidenceGate](https://github.com/TheDarkniteFalls/evidencegate) records the
+  evidence and checks behind an AI-assisted change.
+- Local Model Reliability Example validates structured model output before
+  trusting it.
+- [Context Boundary Examples](https://github.com/TheDarkniteFalls/context-boundary-examples)
+  checks whether an answer stays inside supplied evidence.
+
 ## Public Data Notice
 
 All examples are synthetic. Do not add private prompts, real assistant logs,
