@@ -19,6 +19,7 @@ permissions before doing anything with it.
 ```sh
 python3 reliability_demo.py examples/model_outputs.jsonl
 python3 structured_output_canary.py examples/canary_outputs.jsonl
+python3 protected_path_proof.py examples/protected_path_cases.jsonl
 python3 reliability_demo.py --self-test
 ```
 
@@ -36,6 +37,15 @@ PASS valid_summary_with_citation
 PASS invalid_unknown_citation
 PASS invalid_write_request
 PASS invalid_non_json
+```
+
+Protected-path output:
+
+```text
+PASS valid_expected_write_only
+PASS invalid_unexpected_write
+PASS invalid_protected_path_change
+PASS invalid_missing_expected_write
 ```
 
 ## Contract
@@ -57,6 +67,14 @@ silently drift away from the JSON shape the application expects.
 The fixture in `examples/canary_outputs.jsonl` includes one valid output and
 three expected failures: unknown citation, write request, and non-JSON text.
 
+## Protected-Path Proof
+
+`protected_path_proof.py` compares synthetic before/after manifests. It checks
+that only expected paths changed and that protected paths did not change.
+
+This is useful when a workflow should prove that the model proposed text, but
+the application kept write authority and protected state safe.
+
 ## How These Fit Together
 
 Local Model Reliability Example is one piece of a small public toolkit:
@@ -65,12 +83,14 @@ Local Model Reliability Example is one piece of a small public toolkit:
   checks a public-candidate repo before publishing.
 - [EvidenceGate](https://github.com/TheDarkniteFalls/evidencegate) records the
   evidence and checks behind an AI-assisted change.
-- Local Model Reliability Example validates structured model output before
-  trusting it.
+- Local Model Reliability Example validates structured model output and
+  protected-path boundaries before trusting it.
 - [Context Boundary Examples](https://github.com/TheDarkniteFalls/context-boundary-examples)
   checks whether an answer stays inside supplied evidence.
 - [Green-Spine QA Pattern](https://github.com/TheDarkniteFalls/green-spine-qa-pattern)
   bundles the important path behind one repeatable command.
+- [Codex Project Instructions Starter](https://github.com/TheDarkniteFalls/codex-project-instructions-starter)
+  gives coding agents clear project rules before they work.
 
 ## Public Data Notice
 
@@ -84,6 +104,9 @@ python3 reliability_demo.py --self-test
 python3 reliability_demo.py examples/model_outputs.jsonl
 python3 structured_output_canary.py --self-test
 python3 structured_output_canary.py examples/canary_outputs.jsonl
+python3 protected_path_proof.py --self-test
+python3 protected_path_proof.py examples/protected_path_cases.jsonl
 python3 -m py_compile reliability_demo.py
 python3 -m py_compile structured_output_canary.py
+python3 -m py_compile protected_path_proof.py
 ```
