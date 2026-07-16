@@ -1,5 +1,17 @@
 # Local Model Reliability Example
 
+<!-- toolkit-trust-card:start -->
+> **Public contract:** Stable pattern · about 5 min · Python 3 · no model · no network
+>
+> **Operation:** Read-only check; examples may use temporary files
+>
+> **A pass establishes:** Synthetic outputs satisfy the declared shape, citation, confidence, and no-write contracts.
+>
+> **It does not establish:** The example calls no model and does not measure live-model quality.
+>
+> **First check:** `python3 reliability_demo.py --self-test`
+<!-- toolkit-trust-card:end -->
+
 A tiny, synthetic example of the pattern: model proposes, application
 validates.
 
