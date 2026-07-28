@@ -26,6 +26,15 @@ it looks confident. This repo shows a simple boundary: the model may propose an
 answer, but the application validates shape, citations, confidence, and write
 permissions before doing anything with it.
 
+## Learn The Build Order
+
+New to local-model harnesses? Read
+[Build Your First Local Model Harness: From API Call to Evidence](docs/build-your-first-local-model-harness.md)
+for a 20-to-30-minute path from endpoint response to contract checks,
+state-boundary proof, honest failure classification, and a safe path toward
+evidence-backed model comparison. It uses this repository's existing synthetic
+checks and does not call a model or network service.
+
 ## Run
 
 ```sh
