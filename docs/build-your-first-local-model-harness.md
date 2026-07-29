@@ -32,9 +32,20 @@ confident paragraph is transport evidence. It becomes contract evidence only
 after validation, and it becomes utility evidence only after task-specific
 evaluation.
 
-## Checkpoint Map
+## Get The Example
 
-Run these commands from the repository root.
+Clone the repository, then enter its root folder:
+
+```sh
+git clone https://github.com/TheDarkniteFalls/local-model-reliability-example.git
+cd local-model-reliability-example
+```
+
+If you do not use Git, select **Code → Download ZIP** on the repository page,
+extract it, and open a terminal in the extracted folder. Run every command
+below from this repository root.
+
+## Checkpoint Map
 
 | Checkpoint | Command | Model called | Network used | Tracked files changed |
 | --- | --- | --- | --- | --- |
