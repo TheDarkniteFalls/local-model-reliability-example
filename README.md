@@ -35,12 +35,18 @@ state-boundary proof, honest failure classification, and a safe path toward
 evidence-backed model comparison. It uses this repository's existing synthetic
 checks and does not call a model or network service.
 
+When a harness raises the pass count, use
+[Measuring What a Harness Changed](docs/measuring-what-a-harness-changed.md)
+to separate output-discipline recovery, semantic improvement, behavioral
+improvement, regressions, authority stops, and claim eligibility.
+
 ## Run
 
 ```sh
 python3 reliability_demo.py examples/model_outputs.jsonl
 python3 structured_output_canary.py examples/canary_outputs.jsonl
 python3 protected_path_proof.py examples/protected_path_cases.jsonl
+python3 harness_gain_report.py examples/harness_gain_cases.json
 python3 reliability_demo.py --self-test
 ```
 
@@ -96,6 +102,17 @@ that only expected paths changed and that protected paths did not change.
 This is useful when a workflow should prove that the model proposed text, but
 the application kept write authority and protected state safe.
 
+## Harness Gain Decomposition
+
+`harness_gain_report.py` checks a paired synthetic run without flattening
+response-contract compliance, semantic quality, boundary behavior, authority
+disposition, operational effects, or raw-versus-adapted output into one score.
+
+The bundled run stops correctly after an authority-contract failure, preserves
+the remaining scheduled case as `not_assessed_integrity_stop`, and leaves the
+material-gain claim unassessed. A valid fail-closed record is therefore not
+mistaken for a successful comparison.
+
 ## How These Fit Together
 
 Local Model Reliability Example is one piece of a small public toolkit:
@@ -127,7 +144,10 @@ python3 structured_output_canary.py --self-test
 python3 structured_output_canary.py examples/canary_outputs.jsonl
 python3 protected_path_proof.py --self-test
 python3 protected_path_proof.py examples/protected_path_cases.jsonl
+python3 harness_gain_report.py --self-test
+python3 harness_gain_report.py examples/harness_gain_cases.json
 python3 -m py_compile reliability_demo.py
 python3 -m py_compile structured_output_canary.py
 python3 -m py_compile protected_path_proof.py
+python3 -m py_compile harness_gain_report.py
 ```
