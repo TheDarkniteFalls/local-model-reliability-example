@@ -323,6 +323,9 @@ any route deserves promotion.
 ## Where To Go Next
 
 - Use this repository to keep the first contract small and inspectable.
+- Use [Measuring What a Harness Changed](measuring-what-a-harness-changed.md)
+  when a higher pass count needs to be separated into contract recovery,
+  semantic improvement, behavioral improvement, regressions, and integrity stops.
 - Use
   [Local Assistant Reliability Lab](https://github.com/TheDarkniteFalls/local-assistant-reliability-lab)
   to find adjacent patterns for context, authority, receipts, and repeatable
