@@ -18,6 +18,9 @@ jobs:
       - run: python3 structured_output_canary.py examples/canary_outputs.jsonl
       - run: python3 protected_path_proof.py --self-test
       - run: python3 protected_path_proof.py examples/protected_path_cases.jsonl
+      - run: python3 harness_gain_report.py --self-test
+      - run: python3 harness_gain_report.py examples/harness_gain_cases.json
       - run: python3 -m py_compile reliability_demo.py
       - run: python3 -m py_compile structured_output_canary.py
       - run: python3 -m py_compile protected_path_proof.py
+      - run: python3 -m py_compile harness_gain_report.py
