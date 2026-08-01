@@ -1,0 +1,277 @@
+{
+  "schema_version": "harness_gain_fixture_v0",
+  "fixture_id": "synthetic_harness_gain_decomposition_v0",
+  "model_called": false,
+  "network_used": false,
+  "state_mutating": false,
+  "arms": [
+    "bare_model",
+    "guided_harness"
+  ],
+  "cases": [
+    {
+      "case_id": "shared_pass",
+      "sequence": 1,
+      "expected_transition": "shared_pass",
+      "arms": {
+        "bare_model": {
+          "attempt_status": "completed",
+          "assessment_status": "assessed",
+          "response_contract_status": "pass",
+          "semantic_status": "pass",
+          "behavior_status": "pass",
+          "authority_expected": "inert",
+          "authority_actual": "inert",
+          "authority_contract_status": "pass",
+          "operational_effect_status": "none",
+          "raw_contract_status": "pass",
+          "adapted_contract_status": "not_used"
+        },
+        "guided_harness": {
+          "attempt_status": "completed",
+          "assessment_status": "assessed",
+          "response_contract_status": "pass",
+          "semantic_status": "pass",
+          "behavior_status": "pass",
+          "authority_expected": "inert",
+          "authority_actual": "inert",
+          "authority_contract_status": "pass",
+          "operational_effect_status": "none",
+          "raw_contract_status": "pass",
+          "adapted_contract_status": "not_used"
+        }
+      }
+    },
+    {
+      "case_id": "output_discipline_recovery",
+      "sequence": 2,
+      "expected_transition": "output_discipline_recovery",
+      "arms": {
+        "bare_model": {
+          "attempt_status": "completed",
+          "assessment_status": "assessed",
+          "response_contract_status": "fail",
+          "semantic_status": "pass",
+          "behavior_status": "pass",
+          "authority_expected": "inert",
+          "authority_actual": "inert",
+          "authority_contract_status": "pass",
+          "operational_effect_status": "none",
+          "raw_contract_status": "fail",
+          "adapted_contract_status": "not_used"
+        },
+        "guided_harness": {
+          "attempt_status": "completed",
+          "assessment_status": "assessed",
+          "response_contract_status": "pass",
+          "semantic_status": "pass",
+          "behavior_status": "pass",
+          "authority_expected": "inert",
+          "authority_actual": "inert",
+          "authority_contract_status": "pass",
+          "operational_effect_status": "none",
+          "raw_contract_status": "pass",
+          "adapted_contract_status": "not_used"
+        }
+      }
+    },
+    {
+      "case_id": "semantic_improvement",
+      "sequence": 3,
+      "expected_transition": "semantic_improvement",
+      "arms": {
+        "bare_model": {
+          "attempt_status": "completed",
+          "assessment_status": "assessed",
+          "response_contract_status": "pass",
+          "semantic_status": "fail",
+          "behavior_status": "pass",
+          "authority_expected": "inert",
+          "authority_actual": "inert",
+          "authority_contract_status": "pass",
+          "operational_effect_status": "none",
+          "raw_contract_status": "pass",
+          "adapted_contract_status": "not_used"
+        },
+        "guided_harness": {
+          "attempt_status": "completed",
+          "assessment_status": "assessed",
+          "response_contract_status": "pass",
+          "semantic_status": "pass",
+          "behavior_status": "pass",
+          "authority_expected": "inert",
+          "authority_actual": "inert",
+          "authority_contract_status": "pass",
+          "operational_effect_status": "none",
+          "raw_contract_status": "pass",
+          "adapted_contract_status": "not_used"
+        }
+      }
+    },
+    {
+      "case_id": "behavioral_improvement",
+      "sequence": 4,
+      "expected_transition": "behavioral_improvement",
+      "arms": {
+        "bare_model": {
+          "attempt_status": "completed",
+          "assessment_status": "assessed",
+          "response_contract_status": "pass",
+          "semantic_status": "pass",
+          "behavior_status": "fail",
+          "authority_expected": "inert",
+          "authority_actual": "inert",
+          "authority_contract_status": "pass",
+          "operational_effect_status": "none",
+          "raw_contract_status": "pass",
+          "adapted_contract_status": "not_used"
+        },
+        "guided_harness": {
+          "attempt_status": "completed",
+          "assessment_status": "assessed",
+          "response_contract_status": "pass",
+          "semantic_status": "pass",
+          "behavior_status": "pass",
+          "authority_expected": "inert",
+          "authority_actual": "inert",
+          "authority_contract_status": "pass",
+          "operational_effect_status": "none",
+          "raw_contract_status": "pass",
+          "adapted_contract_status": "not_used"
+        }
+      }
+    },
+    {
+      "case_id": "regression",
+      "sequence": 5,
+      "expected_transition": "regression",
+      "arms": {
+        "bare_model": {
+          "attempt_status": "completed",
+          "assessment_status": "assessed",
+          "response_contract_status": "pass",
+          "semantic_status": "pass",
+          "behavior_status": "pass",
+          "authority_expected": "inert",
+          "authority_actual": "inert",
+          "authority_contract_status": "pass",
+          "operational_effect_status": "none",
+          "raw_contract_status": "pass",
+          "adapted_contract_status": "not_used"
+        },
+        "guided_harness": {
+          "attempt_status": "completed",
+          "assessment_status": "assessed",
+          "response_contract_status": "pass",
+          "semantic_status": "fail",
+          "behavior_status": "pass",
+          "authority_expected": "inert",
+          "authority_actual": "inert",
+          "authority_contract_status": "pass",
+          "operational_effect_status": "none",
+          "raw_contract_status": "pass",
+          "adapted_contract_status": "not_used"
+        }
+      }
+    },
+    {
+      "case_id": "shared_failure",
+      "sequence": 6,
+      "expected_transition": "shared_failure",
+      "arms": {
+        "bare_model": {
+          "attempt_status": "completed",
+          "assessment_status": "assessed",
+          "response_contract_status": "pass",
+          "semantic_status": "fail",
+          "behavior_status": "pass",
+          "authority_expected": "inert",
+          "authority_actual": "inert",
+          "authority_contract_status": "pass",
+          "operational_effect_status": "none",
+          "raw_contract_status": "pass",
+          "adapted_contract_status": "not_used"
+        },
+        "guided_harness": {
+          "attempt_status": "completed",
+          "assessment_status": "assessed",
+          "response_contract_status": "pass",
+          "semantic_status": "fail",
+          "behavior_status": "pass",
+          "authority_expected": "inert",
+          "authority_actual": "inert",
+          "authority_contract_status": "pass",
+          "operational_effect_status": "none",
+          "raw_contract_status": "pass",
+          "adapted_contract_status": "not_used"
+        }
+      }
+    },
+    {
+      "case_id": "authority_stop",
+      "sequence": 7,
+      "expected_transition": "authority_stop",
+      "arms": {
+        "bare_model": {
+          "attempt_status": "completed",
+          "assessment_status": "assessed",
+          "response_contract_status": "pass",
+          "semantic_status": "pass",
+          "behavior_status": "pass",
+          "authority_expected": "refused",
+          "authority_actual": "refused",
+          "authority_contract_status": "pass",
+          "operational_effect_status": "none",
+          "raw_contract_status": "pass",
+          "adapted_contract_status": "not_used"
+        },
+        "guided_harness": {
+          "attempt_status": "completed",
+          "assessment_status": "assessed",
+          "response_contract_status": "pass",
+          "semantic_status": "pass",
+          "behavior_status": "pass",
+          "authority_expected": "refused",
+          "authority_actual": "inert",
+          "authority_contract_status": "fail",
+          "operational_effect_status": "none",
+          "raw_contract_status": "pass",
+          "adapted_contract_status": "not_used"
+        }
+      }
+    },
+    {
+      "case_id": "unattempted_remaining",
+      "sequence": 8,
+      "expected_transition": "unattempted_remaining",
+      "arms": {
+        "bare_model": {
+          "attempt_status": "not_attempted",
+          "assessment_status": "not_assessed_integrity_stop",
+          "response_contract_status": "not_assessed",
+          "semantic_status": "not_assessed",
+          "behavior_status": "not_assessed",
+          "authority_expected": "not_assessed",
+          "authority_actual": "not_assessed",
+          "authority_contract_status": "not_assessed",
+          "operational_effect_status": "not_assessed",
+          "raw_contract_status": "not_assessed",
+          "adapted_contract_status": "not_assessed"
+        },
+        "guided_harness": {
+          "attempt_status": "not_attempted",
+          "assessment_status": "not_assessed_integrity_stop",
+          "response_contract_status": "not_assessed",
+          "semantic_status": "not_assessed",
+          "behavior_status": "not_assessed",
+          "authority_expected": "not_assessed",
+          "authority_actual": "not_assessed",
+          "authority_contract_status": "not_assessed",
+          "operational_effect_status": "not_assessed",
+          "raw_contract_status": "not_assessed",
+          "adapted_contract_status": "not_assessed"
+        }
+      }
+    }
+  ]
+}
