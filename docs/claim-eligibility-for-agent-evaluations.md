@@ -214,9 +214,10 @@ not offered as evidence readers must accept.
 The MoE example is hypothetical. It makes no claim about a specific model,
 router, dataset, or lab.
 
-This draft was developed through collaboration between Mike and Codex. Any
-published version should disclose that assistance and receive human evidence,
-privacy, source, and editorial review.
+This note was developed through collaboration between Mike and Codex.
+Publication in this repository discloses that assistance. Human evidence,
+privacy, source, and editorial review remain required for any revision or
+broader promotion.
 
 ## Next Action
 
