@@ -1,6 +1,6 @@
 # From Metric to Promotion: Claim Eligibility for Agent Evaluations
 
-Status: Public-candidate technical note; not published
+Status: Public technical note; published in this repository
 
 Evidence cutoff: 2026-08-02
 
@@ -201,8 +201,8 @@ remain unproven.
 - The MoE example is illustrative and contains no empirical routing result.
 - No external practitioner study is planned at this stage. External usefulness
   remains unknown until the method earns real use.
-- This note is a public-candidate draft, not evidence of adoption, lab interest,
-  or production readiness.
+- Publication on this repository’s main branch is not evidence of adoption,
+  lab interest, or production readiness.
 
 ## Privacy and Generalization
 
@@ -220,10 +220,9 @@ privacy, source, and editorial review.
 
 ## Next Action
 
-The smallest next step is an owner-led evidence and publication-readiness audit:
-open every source, check the claim attached to it, and decide whether the
-bounded-claim hook is concrete enough to merit release consideration.
-Publication, outreach, and repository changes remain separate owner decisions.
+The smallest next step is to observe further use without expanding v0
+speculatively. Outreach, implementation, standardization, and broader promotion
+remain separate owner decisions.
 
 ## Sources
 
