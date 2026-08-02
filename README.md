@@ -39,6 +39,9 @@ When a harness raises the pass count, use
 [Measuring What a Harness Changed](docs/measuring-what-a-harness-changed.md)
 to separate output-discipline recovery, semantic improvement, behavioral
 improvement, regressions, authority stops, and claim eligibility.
+For the downstream decision boundary, see [Claim Eligibility for Agent
+Evaluations](docs/claim-eligibility-for-agent-evaluations.md), which keeps
+evidence, eligible wording, and promotion authority separate.
 
 ## Run
 
