@@ -1,19 +1,45 @@
 # Local Model Reliability Example
 
 <!-- toolkit-trust-card:start -->
-> **Public contract:** Stable pattern · about 5 min · Python 3 · no model · no network
+> **Public contract:** Experimental pattern · about 5 min · Python 3 · no model · no network
 >
 > **Operation:** Read-only check; examples may use temporary files
 >
-> **A pass establishes:** Synthetic outputs satisfy the declared shape, citation, confidence, and no-write contracts.
+> **A pass establishes:** The frozen synthetic cases accept only the source-bound answer and reject missing or unapproved citations, unsupported release facts, false metadata, hostile echoes, raw source content, and malformed shapes before downstream context is allowed.
 >
-> **It does not establish:** The example calls no model and does not measure live-model quality.
+> **It does not establish:** The gate calls no model or network, covers only the declared software-release fact profile and canaries, and does not establish source truth, general semantic correctness, live-model quality, or external adoption.
 >
-> **First check:** `python3 reliability_demo.py --self-test`
+> **First check:** `python3 grounded_answer_gate.py examples/grounded_answer_cases.json`
 <!-- toolkit-trust-card:end -->
 
 A tiny, synthetic example of the pattern: model proposes, application
 validates.
+
+## Prevent An Ungrounded Web Answer From Entering Trusted Agent Context
+
+The experimental Citeglass Grounded Answer Gate checks one complete boundary:
+typed source facts enter, a model-authored JSON answer is evaluated unchanged,
+and only an answer with approved citations, truthful source metadata, supported
+release facts, and zero instruction authority may enter downstream context.
+
+Run the frozen synthetic contract in about five minutes:
+
+```sh
+python3 grounded_answer_gate.py examples/grounded_answer_cases.json
+```
+
+The valid case is accepted. Missing citations, invented URLs or versions,
+incorrect release facts, false metadata, browsing claims, hostile-instruction
+echoes, raw source content, malformed JSON, and unknown fields are rejected.
+Every result includes a machine-readable receipt from
+`evaluate_grounded_answer(case)` with `downstream_context_allowed` set
+explicitly. The fixture command emits one NDJSON record per case with that
+receipt and its frozen expected decision. The gate hashes but does not retain
+the answer text.
+
+Read [Prevent Ungrounded Web Answers From Entering Trusted Context](docs/prevent-ungrounded-web-answers.md)
+for the integration shape, receipt interpretation, Gemma/LiteRT-LM placement,
+threat boundary, and limitations.
 
 The demo does not call a model. It reads sample local-model output, parses the
 structured JSON, checks citations against the supplied source IDs, and rejects
@@ -46,6 +72,7 @@ evidence, eligible wording, and promotion authority separate.
 ## Run
 
 ```sh
+python3 grounded_answer_gate.py examples/grounded_answer_cases.json
 python3 reliability_demo.py examples/model_outputs.jsonl
 python3 structured_output_canary.py examples/canary_outputs.jsonl
 python3 protected_path_proof.py examples/protected_path_cases.jsonl
@@ -87,6 +114,14 @@ Each model output must contain:
 - `confidence`: a number from `0` to `1`.
 - `citations`: source IDs from the current case.
 - `writes`: an empty list.
+
+The Grounded Answer Gate has a separate, narrower v0 contract. Its input is one
+`citeglass_grounded_answer_case_v0` containing provider-neutral typed
+`software_release` projections and the exact raw candidate JSON. Its receipt is
+`citeglass_grounded_answer_receipt_v0` with stable pass/fail check codes,
+approved and cited provenance, an answer hash and length, and the downstream
+context decision. Unknown fields fail closed. No output repair or fallback
+wrapping is allowed.
 
 ## Structured Output Canary
 
@@ -141,6 +176,9 @@ connector exports, credentials, or personal data.
 ## Quality Checks
 
 ```sh
+python3 grounded_answer_gate.py --self-test
+python3 grounded_answer_gate.py examples/grounded_answer_cases.json
+python3 -B -m unittest discover -s tests -p 'test_*.py' -v
 python3 reliability_demo.py --self-test
 python3 reliability_demo.py examples/model_outputs.jsonl
 python3 structured_output_canary.py --self-test
@@ -153,4 +191,5 @@ python3 -m py_compile reliability_demo.py
 python3 -m py_compile structured_output_canary.py
 python3 -m py_compile protected_path_proof.py
 python3 -m py_compile harness_gain_report.py
+python3 -m py_compile grounded_answer_gate.py
 ```
