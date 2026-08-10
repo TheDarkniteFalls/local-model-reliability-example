@@ -82,9 +82,17 @@ possible prompt injection. The first fact profile deliberately covers only
 software releases. Production adopters must own source authentication,
 extraction, policy, display, and storage boundaries around it.
 
+It also does not resolve stale, duplicate, conflicting, or malicious typed
+projections, and its bounded reference checks do not prove exhaustive
+one-to-one citation coverage for arbitrary multi-source answers. The retained
+hash and length are audit identifiers, not a privacy guarantee. The explicit
+no-model, no-network, and no-mutation fields describe this gate invocation, not
+the surrounding retrieval, model, UI, history, or storage pipeline.
+
 ## What This Establishes
 
 A passing synthetic run establishes that the application can make an explicit,
 reproducible downstream-context decision from the declared v0 contract. It
 does not establish live-model answer quality, general semantic correctness,
-source truth, security against arbitrary hostile content, or safe deployment.
+source truth, runtime or token-budget compatibility, security against
+arbitrary hostile content, or safe deployment.
