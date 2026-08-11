@@ -206,10 +206,9 @@ remain unproven.
 
 ## Privacy and Generalization
 
-The principal case uses public synthetic data only. Private LSAL prompts,
-outputs, tasks, judges, manifests, holdouts, logs, paths, identities, and real
-evaluation counts are excluded. Internal work motivated the questions but is
-not offered as evidence readers must accept.
+The principal case uses public synthetic data only. No private prompts,
+outputs, tasks, judges, manifests, holdouts, logs, paths, identities, or real
+evaluation counts are used or represented.
 
 The MoE example is hypothetical. It makes no claim about a specific model,
 router, dataset, or lab.
