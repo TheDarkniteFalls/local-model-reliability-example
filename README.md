@@ -1,28 +1,18 @@
 # Local Model Reliability Example
 
-<!-- toolkit-trust-card:start -->
-> **Public contract:** Experimental pattern · about 5 min · Python 3 · no model · no network
->
-> **Operation:** Read-only check; examples may use temporary files
->
-> **A pass establishes:** The frozen synthetic cases accept only the source-bound answer and reject missing or unapproved citations, unsupported release facts, false metadata, hostile echoes, raw source content, and malformed shapes before downstream context is allowed.
->
-> **It does not establish:** The gate calls no model or network, covers only the declared software-release fact profile and canaries, and does not establish source truth, general semantic correctness, live-model quality, or external adoption.
->
-> **First check:** `python3 grounded_answer_gate.py examples/grounded_answer_cases.json`
-<!-- toolkit-trust-card:end -->
+Try small Python checks that accept or reject supplied example answers before
+an application uses them. You can test citations, JSON structure and protected
+files without installing or calling a model. All the examples are synthetic.
 
-A tiny, synthetic example of the pattern: model proposes, application
-validates.
-
-## Prevent An Ungrounded Web Answer From Entering Trusted Agent Context
+## Try The Grounded Answer Check
 
 The experimental Citeglass Grounded Answer Gate checks one complete boundary:
 typed source facts enter, a model-authored JSON answer is evaluated unchanged,
 and only an answer with approved citations, truthful source metadata, supported
 release facts, and zero instruction authority may enter downstream context.
 
-Run the frozen synthetic contract in about five minutes:
+With Python 3, run this from the repository root. The examples and their
+expected decisions are fixed, so you can compare the result:
 
 ```sh
 python3 grounded_answer_gate.py examples/grounded_answer_cases.json
@@ -37,6 +27,20 @@ explicitly. The fixture command emits one NDJSON record per case with that
 receipt and its frozen expected decision. The gate hashes but does not retain
 the answer text.
 
+<!-- toolkit-trust-card:placement -->
+
+<!-- toolkit-trust-card:start -->
+> **Public contract:** Experimental pattern · about 5 min · Python 3 · no model · no network
+>
+> **Operation:** Read-only check; examples may use temporary files
+>
+> **A pass establishes:** The frozen synthetic cases accept only the source-bound answer and reject missing or unapproved citations, unsupported release facts, false metadata, hostile echoes, raw source content, and malformed shapes before downstream context is allowed.
+>
+> **It does not establish:** The gate calls no model or network, covers only the declared software-release fact profile and canaries, and does not establish source truth, general semantic correctness, live-model quality, or external adoption.
+>
+> **First check:** `python3 grounded_answer_gate.py examples/grounded_answer_cases.json`
+<!-- toolkit-trust-card:end -->
+
 Read [Prevent Ungrounded Web Answers From Entering Trusted Context](docs/prevent-ungrounded-web-answers.md)
 for the integration shape, receipt interpretation, Gemma/LiteRT-LM placement,
 threat boundary, and limitations.
@@ -45,20 +49,21 @@ The demo does not call a model. It reads sample local-model output, parses the
 structured JSON, checks citations against the supplied source IDs, and rejects
 write requests. This keeps the example deterministic and public-safe.
 
-## Why It Exists
+## What The Examples Show
 
-Small models can be useful, but their output should not be trusted just because
-it looks confident. This repo shows a simple boundary: the model may propose an
-answer, but the application validates shape, citations, confidence, and write
-permissions before doing anything with it.
+An answer can look plausible while citing an unknown source or asking to write
+a file it should not change. These checks give the application a way to reject
+those outputs. A passing synthetic example shows that the declared rule worked
+for that case; it does not show that a live model answers well or that a source
+is true.
 
 ## Learn The Build Order
 
-New to local-model harnesses? Read
+A harness is the code around a model that prepares inputs, checks outputs and
+records results. If you are building your first one, read
 [Build Your First Local Model Harness: From API Call to Evidence](docs/build-your-first-local-model-harness.md)
-for a 20-to-30-minute path from endpoint response to contract checks,
-state-boundary proof, honest failure classification, and a safe path toward
-evidence-backed model comparison. It uses this repository's existing synthetic
+for a 20-to-30-minute walkthrough: check the response format, compare changed
+files, and record what failed before considering a model comparison. It uses this repository's existing synthetic
 checks and does not call a model or network service.
 
 When a harness raises the pass count, use
@@ -69,7 +74,7 @@ For the downstream decision boundary, see [Claim Eligibility for Agent
 Evaluations](docs/claim-eligibility-for-agent-evaluations.md), which keeps
 evidence, eligible wording, and promotion authority separate.
 
-## Run
+## Try The Other Checks
 
 ```sh
 python3 grounded_answer_gate.py examples/grounded_answer_cases.json
@@ -105,7 +110,7 @@ PASS invalid_protected_path_change
 PASS invalid_missing_expected_write
 ```
 
-## Contract
+## What An Answer Must Contain
 
 Each model output must contain:
 
@@ -125,7 +130,8 @@ wrapping is allowed.
 
 ## Structured Output Canary
 
-`structured_output_canary.py` checks expected pass/fail cases against the same
+A canary is a small example that should pass or fail in a known way.
+`structured_output_canary.py` checks these cases against the same
 contract used by the demo. It is useful when prompt or model changes might
 silently drift away from the JSON shape the application expects.
 
@@ -137,8 +143,8 @@ three expected failures: unknown citation, write request, and non-JSON text.
 `protected_path_proof.py` compares synthetic before/after manifests. It checks
 that only expected paths changed and that protected paths did not change.
 
-This is useful when a workflow should prove that the model proposed text, but
-the application kept write authority and protected state safe.
+Use this to check which paths a change affected. The supplied before/after
+records are synthetic; they do not prove that a real process was contained.
 
 ## Harness Gain Decomposition
 
@@ -151,20 +157,18 @@ the remaining scheduled case as `not_assessed_integrity_stop`, and leaves the
 material-gain claim unassessed. A valid fail-closed record is therefore not
 mistaken for a successful comparison.
 
-## How These Fit Together
+## Related Tools
 
-Local Model Reliability Example is one piece of a small public toolkit:
+Choose a related example when you need to check another part of your workflow:
 
 - [Public Repo Safety Kit](https://github.com/TheDarkniteFalls/public-repo-safety-kit)
   checks a public-candidate repo before publishing.
 - [EvidenceGate](https://github.com/TheDarkniteFalls/evidencegate) records the
   evidence and checks behind an AI-assisted change.
-- Local Model Reliability Example validates structured model output and
-  protected-path boundaries before trusting it.
 - [Context Boundary Examples](https://github.com/TheDarkniteFalls/context-boundary-examples)
   checks whether an answer stays inside supplied evidence.
 - [Green-Spine QA Pattern](https://github.com/TheDarkniteFalls/green-spine-qa-pattern)
-  bundles the important path behind one repeatable command.
+  puts the checks for an important workflow behind one repeatable command.
 - [Codex Project Instructions Starter](https://github.com/TheDarkniteFalls/codex-project-instructions-starter)
   gives coding agents clear project rules before they work.
 

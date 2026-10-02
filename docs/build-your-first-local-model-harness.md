@@ -1,18 +1,20 @@
 # Build Your First Local Model Harness: From API Call to Evidence
 
-This is a 20-to-30-minute guide for builders who can already get text back
-from a local-model endpoint and want to make that response dependable. If you
-do not have a running model yet, you can still complete every checkpoint with
-the synthetic responses in this repository.
+A harness is the code around a model: it prepares the request, checks the
+response and records what happened. In this 20-to-30-minute guide, you will
+try checks for response format, citations and changed files. You can complete
+every checkpoint with the synthetic responses here, even without a running
+model.
 
 The guide does not install or call a model. It does not depend on a particular
 server, provider, model family, or piece of hardware. Every local checkpoint
 uses Python's standard library, makes no network request, and leaves tracked
 repository files unchanged.
 
-## The Core Idea
+## Decide What You Need To Check
 
-A response is not evidence that the whole system worked.
+Receiving text tells you the model answered. You still need to check whether
+the application can use that answer and whether it solves the task.
 
 Treat model output as an untrusted proposal. Let the surrounding harness own
 the context, validation, state boundary, evidence record, and any decision to
@@ -95,8 +97,8 @@ known-bad object. It does not test a model endpoint.
 
 ## 2. Put The Harness In Charge
 
-Keep the first architecture deliberately uneven: the model proposes; the
-harness and operator decide.
+Give each part a clear job. The model supplies a proposal; the harness checks
+it, and the operator or calling application decides what may happen next.
 
 | Part | Owns |
 | --- | --- |
@@ -181,7 +183,7 @@ Keep those results separate.
 
 ## 4. Prove The State Boundary
 
-"Read-only" should be a checked claim, not an intention.
+To check a read-only run, compare the files before and after it.
 
 The protected-path example compares synthetic before and after manifests. It
 checks that:
@@ -300,7 +302,7 @@ The first useful milestone is smaller:
 > unexpected writes, evaluated honestly, and recorded without hiding missing
 > evidence.
 
-Build the user interface after that path is boring enough to trust.
+Check that path repeatedly before adding a user interface.
 
 ## Run The Complete Local Check
 
@@ -335,5 +337,5 @@ any route deserves promotion.
   when you have repeated runs on matched tasks and are ready to compare model
   routes without declaring a universal winner.
 
-The goal is not to accumulate the most machinery. It is to know exactly what
-each layer proves before trusting the next one.
+Keep the results for each layer separate so you can see what is ready to use
+and what still needs evidence.

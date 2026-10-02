@@ -1,8 +1,8 @@
 # Prevent Ungrounded Web Answers From Entering Trusted Context
 
-A local model can produce fluent wording after receiving current web evidence
-and still omit its citation, invent a version, misstate the date, or describe
-the answer as model knowledge. If an application saves that wording as trusted
+Suppose you give a local model a software release record. Its answer might
+still omit the citation, invent a version, misstate the date, or call the
+answer model knowledge. If an application saves that wording as trusted
 conversation context, one weak answer can influence later turns.
 
 Citeglass v0.1 demonstrates an application-owned boundary:
@@ -16,19 +16,19 @@ Citeglass v0.1 demonstrates an application-owned boundary:
    facts, browsing claims, and hostile-instruction canaries.
 5. Only an accepted receipt permits the wording to enter downstream context.
 
-## Five-Minute Proof
+## Try The Fixed Examples
 
 ```sh
 python3 grounded_answer_gate.py examples/grounded_answer_cases.json
 ```
 
-The fixture freezes one accepted case and the known-bad cases before the gate
-is evaluated. The command emits one NDJSON record per case containing the exact
+The fixture is a file of examples with expected results fixed before the gate
+is evaluated. It includes one accepted case and the known-bad cases. The command emits one NDJSON record per case containing the exact
 receipt, the predetermined expectation, and `matches_expectation`. A zero exit
 means every case reached its predetermined decision. It does not mean every
 generated answer will be good.
 
-## Integration
+## Use The Result In Your Application
 
 The public Python interface is:
 
@@ -63,7 +63,7 @@ without changing the downstream acceptance boundary. It also makes failure
 visible: model-quality problems remain model-quality problems rather than
 being hidden by deterministic answer rewriting.
 
-## Threat Boundary
+## What The Gate Rejects
 
 The v0 gate fails closed on:
 
@@ -89,7 +89,7 @@ hash and length are audit identifiers, not a privacy guarantee. The explicit
 no-model, no-network, and no-mutation fields describe this gate invocation, not
 the surrounding retrieval, model, UI, history, or storage pipeline.
 
-## What This Establishes
+## What This Example Shows
 
 A passing synthetic run establishes that the application can make an explicit,
 reproducible downstream-context decision from the declared v0 contract. It
