@@ -1,12 +1,10 @@
 # Measuring What a Harness Changed
 
-A higher strict pass count does not answer one question. It may mean the model
-reasoned better, but it may also mean that an existing answer became valid
-JSON, included required envelope fields, cited the supplied source, selected a
-tool in the required shape, or handled an ambiguity more safely.
-
-Those are all useful outcomes. They should not be presented as the same kind
-of improvement.
+If more cases pass after you change the code around a model, what improved?
+An answer might now use valid JSON, include required fields, cite the supplied
+source, or request a tool in the right format. It might also be more accurate
+or handle ambiguity better. This guide helps you report those changes
+separately.
 
 This repository includes a deterministic synthetic report that keeps the
 differences visible:
@@ -21,9 +19,10 @@ It calls no model, uses no network service, and changes no application state.
 The fixture contains classifications only: no prompts, model responses,
 private paths, benchmark answers, or live evaluation traces.
 
-## The Separate Questions
+## Read Each Part Of The Result
 
-Each arm records the following dimensions independently:
+An arm is one version of the setup being compared. The report records each
+of these questions separately for both arms:
 
 | Dimension | Question |
 | --- | --- |
@@ -103,7 +102,7 @@ For code tasks, diagnosis and repair should also be judged separately. A model
 can understand the bug while proposing a faulty patch, or miss an exact rubric
 term while explaining the mechanism correctly.
 
-## What the Report Does Not Prove
+## What This Example Shows
 
 The checker validates the supplied synthetic record and computes a transparent
 decomposition. It does not call a model, authenticate the classifications,
